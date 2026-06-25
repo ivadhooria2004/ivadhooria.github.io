@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Iva Dhooria — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+/* EXIF rotation fix — makes browser respect photo orientation data */
+img{image-orientation:from-image}
+:root{
+  --cream:#FAF7F4;--cream2:#F5EFE8;--sand:#E2D9CE;--sand2:#DDD0C5;
+  --blush:#F2C4D0;--blush2:#C4A9B8;--blue:#B5C9D8;--blue2:#D4E5EF;
+  --navy:#1F2A36;--muted:#5C6470;
+}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--navy);overflow-x:hidden}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 60px;border-bottom:.5px solid var(--sand);background:var(--cream);position:sticky;top:0;z-index:200;transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 1px 24px rgba(0,0,0,.07)}
+.nav-logo{font-family:'Playfair Display',Georgia,serif;font-size:17px;font-weight:400;color:var(--navy);text-decoration:none}
+.nav-links{display:flex;gap:36px}
+.nav-links a{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);opacity:.8;text-decoration:none;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.nav-ctas{display:flex;gap:10px;align-items:center}
+.btn-nav-li{display:flex;align-items:center;gap:6px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;border:.5px solid var(--blue);padding:8px 16px;text-decoration:none;color:var(--navy);transition:background .25s}
+.btn-nav-li:hover{background:var(--blue2)}
+.btn-nav-li svg{width:13px;height:13px;flex-shrink:0}
+.btn-nav-res{font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:.5px solid var(--navy);padding:8px 18px;text-decoration:none;color:var(--navy);transition:background .25s,color .25s}
+.btn-nav-res:hover{background:var(--navy);color:var(--cream)}
+
+/* HERO */
+.hero{display:flex;align-items:stretch;height:calc(100vh - 61px);min-height:480px;max-height:900px;overflow:hidden}
+.hero-img{flex-shrink:0;overflow:hidden;background:var(--cream2)}
+.hero-img img{height:100%;width:auto;display:block;transition:transform 8s ease}
+.hero-img:hover img{transform:scale(1.04)}
+.hero-text{flex:1;padding:36px 56px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.hero-eye{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#9B5268;margin-bottom:14px;display:block}
+.hero-name{font-family:'Playfair Display',Georgia,serif;font-size:clamp(40px,4.8vw,70px);font-weight:300;line-height:1.0;letter-spacing:-.025em;color:var(--navy)}
+.hero-tag{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(17px,2vw,24px);font-style:italic;font-weight:300;color:#4A88A8;margin:12px 0 10px;line-height:1.3}
+.hero-rule{width:40px;height:.5px;background:var(--sand);margin:14px 0 18px}
+.hero-copy{font-size:14px;color:var(--muted);line-height:1.85;max-width:340px;margin-bottom:40px;font-weight:300}
+.hero-btns{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.btn-p{background:var(--blush);color:var(--navy);padding:13px 28px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:background .25s,color .25s}
+.btn-p:hover{background:var(--navy);color:var(--cream)}
+.btn-g{color:var(--navy);padding:13px 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border:none;background:none;border-bottom:.5px solid var(--navy);font-family:'Inter',sans-serif;transition:color .2s,border-color .2s}
+.btn-g:hover{color:var(--blush2);border-color:var(--blush2)}
+.btn-li{display:inline-flex;align-items:center;gap:6px;color:var(--navy);padding:12px 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:none;background:none;border-bottom:.5px solid var(--blue);font-family:'Inter',sans-serif;text-decoration:none;transition:color .2s,border-color .2s}
+.btn-li:hover{color:var(--blush2);border-color:var(--blush2)}
+.btn-li svg{width:13px;height:13px}
+
+/* QUOTE */
+.quote-section{background:var(--navy);padding:96px 60px;text-align:center}
+.quote-text{font-family:'Playfair Display',Georgia,serif;font-size:clamp(36px,5.5vw,68px);font-weight:300;font-style:italic;color:var(--cream);line-height:1.12;margin-bottom:20px;max-width:700px;margin-left:auto;margin-right:auto}
+.quote-attr{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--blush)}
+.quote-ctx{font-size:13.5px;color:rgba(255,255,255,.48);margin-top:10px;font-weight:300}
+
+/* SHARED */
+.sec-eye{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#9B5268;margin-bottom:10px}
+.sec-eye.blue{color:#3D7194}
+.sec-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(24px,3vw,38px);font-weight:300;color:var(--navy);line-height:1.25}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px}
+.lnk-all{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);border-bottom:.5px solid var(--navy);padding-bottom:2px;text-decoration:none;white-space:nowrap;transition:color .2s,border-color .2s}
+.lnk-all:hover{color:var(--blush2);border-color:var(--blush2)}
+
+/* COMPETITIONS */
+.work-section{background:var(--cream2);padding:80px 60px}
+.badge-r{font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;white-space:nowrap}
+.badge-blush{background:var(--blush);color:var(--navy)}
+.badge-blue{background:var(--blue2);color:var(--navy)}
+.badge-sand{background:var(--sand);color:var(--navy)}
+.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--sand)}
+
+/* COMPETITION CARD IMAGE */
+.cc-img{margin:-28px -26px 18px -26px;width:calc(100% + 52px);height:230px;overflow:hidden;flex-shrink:0}
+.cc-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;transition:transform .5s}
+.cc:hover .cc-img img{transform:scale(1.04)}
+
+/* International banner */
+.comp-section-label{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:16px 0 12px;border-top:.5px solid var(--sand);margin-top:20px;margin-bottom:0}
+.comp-section-label:first-child{margin-top:0;border-top:none}
+
+.cc{background:var(--cream);padding:28px 26px;cursor:pointer;position:relative;overflow:hidden;transition:background .25s}
+.cc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blush);transform:scaleY(0);transform-origin:bottom;transition:transform .35s ease}
+.cc:hover{background:#fff}
+.cc:hover::before{transform:scaleY(1)}
+.cc.blue::before{background:var(--blue)}
+.cc-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:8px}
+.cc-org{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9B5268}
+.cc-org.blue{color:#3D7194}
+.cc-title{font-family:'Playfair Display',Georgia,serif;font-size:18px;font-weight:400;color:var(--navy);margin-bottom:6px;line-height:1.3}
+.cc-role{font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:300}
+.cc-desc{font-size:13.5px;color:var(--muted);line-height:1.7;font-weight:300;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s,margin-bottom .3s,opacity .3s}
+.cc:hover .cc-desc{max-height:120px;margin-bottom:18px;opacity:1}
+.cc-lnk{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);border-bottom:.5px solid var(--blue);padding-bottom:2px;text-decoration:none;display:inline-block;opacity:0;transform:translateY(5px);transition:opacity .3s .1s,transform .3s .1s}
+.cc:hover .cc-lnk{opacity:1;transform:translateY(0)}
+
+/* PROJECTS */
+.projects-section{background:var(--cream);padding:80px 60px;border-top:.5px solid var(--sand)}
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--sand)}
+.pc{background:var(--cream2);padding:32px 28px;position:relative;overflow:hidden;transition:background .25s;cursor:default}
+.pc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);transform:scaleY(0);transform-origin:bottom;transition:transform .35s ease}
+.pc:hover{background:#fff}
+.pc:hover::before{transform:scaleY(1)}
+.pc-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:10px}
+.pc-type{font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;white-space:nowrap}
+.pc-type.data{background:#1C1033;color:var(--blush2)}
+.pc-type.honors{background:#EEE8F8;color:#6B3AAA}
+.pc-type.case{background:#FDF2EE;color:#8B3A25}
+.pc-type.writing{background:#EDE5FC;color:#5A2E99}
+.pc-year{font-size:12px;color:var(--muted);font-weight:300}
+.pc-title{font-family:'Playfair Display',Georgia,serif;font-size:19px;font-weight:400;color:var(--navy);margin-bottom:10px;line-height:1.3}
+.pc-desc{font-size:13.5px;color:var(--muted);line-height:1.75;margin-bottom:18px;font-weight:300}
+.pc-tools{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.pc-tool{font-size:11px;letter-spacing:.09em;text-transform:uppercase;border:.5px solid var(--blue);padding:4px 9px;color:var(--navy)}
+.pc-lnk{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);border-bottom:.5px solid var(--blue);padding-bottom:2px;text-decoration:none;transition:color .2s}
+.pc-lnk:hover{color:var(--blue)}
+
+/* FEATURE */
+.feature{position:relative;height:66vh;overflow:hidden}
+.feature img{width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block}
+.feature-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(20,28,36,.78) 40%,rgba(20,28,36,.08) 100%);display:flex;align-items:center;padding:0 80px}
+.feature-inner{max-width:520px}
+.feature-eye{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--blush);margin-bottom:20px;display:block}
+.feature-q{font-family:'Playfair Display',Georgia,serif;font-size:clamp(24px,3.5vw,46px);font-weight:300;font-style:italic;color:#fff;line-height:1.25;margin-bottom:16px}
+.feature-sub{font-size:14px;color:rgba(255,255,255,.78);line-height:1.75;font-weight:300}
+
+/* GALLERY */
+.gallery-section{background:var(--cream);padding:80px 0 80px 60px}
+.gallery-head{margin-bottom:32px;padding-right:60px}
+.gallery-scroll{display:flex;gap:10px;overflow-x:auto;padding-right:60px;padding-bottom:8px;-webkit-overflow-scrolling:touch;cursor:grab;align-items:flex-end}
+.gallery-scroll:active{cursor:grabbing}
+.gallery-scroll::-webkit-scrollbar{height:2px}
+.gallery-scroll::-webkit-scrollbar-track{background:var(--sand)}
+.gallery-scroll::-webkit-scrollbar-thumb{background:var(--blush2)}
+.gi{flex:0 0 auto;overflow:hidden;cursor:pointer;position:relative}
+.gi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;image-orientation:from-image}
+.gi:hover img{transform:scale(1.06)}
+.gi-label{position:absolute;bottom:0;left:0;right:0;padding:18px 12px 12px;background:linear-gradient(to top,rgba(20,28,36,.72) 0%,transparent 100%);color:#fff;font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:0;transition:opacity .3s}
+.gi:hover .gi-label{opacity:1}
+
+/* LIGHTBOX */
+#lb{display:none;position:fixed;inset:0;background:rgba(20,28,36,.94);z-index:500;align-items:center;justify-content:center}
+#lb.on{display:flex}
+#lb img{max-width:88vw;max-height:88vh;object-fit:contain;image-orientation:from-image}
+#lb-x{position:absolute;top:22px;right:28px;color:#fff;font-size:30px;background:none;border:none;cursor:pointer;opacity:.8;line-height:1;font-family:'Inter',sans-serif}
+#lb-x:hover{opacity:1}
+#lb-cap{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:12px;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+.lba{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:26px;background:none;border:none;cursor:pointer;opacity:.65;padding:16px;font-family:'Inter',sans-serif}
+.lba:hover{opacity:1}
+#lb-p{left:14px}#lb-n{right:14px}
+
+/* STATS */
+.stats-section{background:var(--navy);padding:72px 60px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.07)}
+.sb{padding:44px 28px;background:var(--navy);text-align:center}
+.sb-n{font-family:'Playfair Display',Georgia,serif;font-size:clamp(38px,5vw,62px);font-weight:300;color:var(--cream);line-height:1;margin-bottom:10px}
+.sb-l{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--blush2);margin-bottom:6px}
+.sb-s{font-size:13px;color:rgba(255,255,255,.42);font-weight:300;line-height:1.55}
+
+/* ABOUT */
+.about-section{background:var(--cream2);padding:80px 60px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;border-top:.5px solid var(--sand)}
+.about-left h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,2.8vw,36px);font-weight:300;line-height:1.4;margin-bottom:22px;color:var(--navy)}
+.about-left p{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:14px;font-weight:300}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.atag{font-size:12px;letter-spacing:.12em;text-transform:uppercase;border:.5px solid var(--sand);padding:7px 13px;color:var(--navy);transition:background .2s,border-color .2s}
+.atag:hover{background:var(--blush);border-color:var(--blush)}
+.about-img{overflow:hidden;aspect-ratio:4/5;background:var(--sand)}
+.about-img img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block;transition:transform .5s}
+.about-img:hover img{transform:scale(1.03)}
+
+/* CONTACT */
+.contact-section{background:var(--cream);padding:88px 60px;border-top:.5px solid var(--sand);text-align:center}
+.contact-section h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,4vw,50px);font-weight:300;color:var(--navy);margin-bottom:14px;line-height:1.2}
+.contact-section p{font-size:14px;color:var(--muted);max-width:460px;margin:0 auto 44px;line-height:1.8;font-weight:300}
+.contact-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.cbtn{display:inline-flex;align-items:center;gap:7px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:14px 26px;text-decoration:none;font-family:'Inter',sans-serif;transition:background .25s,color .25s,border-color .25s}
+.cbtn svg{width:14px;height:14px;flex-shrink:0}
+.cbtn.primary{background:var(--blush);color:var(--navy);border:.5px solid var(--blush)}
+.cbtn.primary:hover{background:var(--navy);color:var(--cream);border-color:var(--navy)}
+.cbtn.outline{background:transparent;color:var(--navy);border:.5px solid var(--navy)}
+.cbtn.outline:hover{background:var(--navy);color:var(--cream)}
+.cbtn.li{background:transparent;color:var(--navy);border:.5px solid var(--blue)}
+.cbtn.li:hover{background:var(--blue2)}
+
+/* FOOTER */
+footer{background:var(--navy);padding:38px 60px;display:flex;justify-content:space-between;align-items:center}
+.foot-name{font-family:'Playfair Display',Georgia,serif;font-size:18px;font-weight:300;color:var(--cream)}
+.foot-links{display:flex;gap:24px}
+.foot-lnk{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.foot-lnk:hover{color:var(--blush)}
+.foot-li{display:inline-flex;align-items:center;gap:6px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--blush);text-decoration:none;border:.5px solid var(--blush2);padding:8px 14px;transition:background .2s}
+.foot-li:hover{background:rgba(242,196,208,.12)}
+.foot-li svg{width:12px;height:12px}
+
+/* EXPERIENCE */
+.exp-section{background:var(--cream2);padding:80px 60px;border-top:.5px solid var(--sand)}
+.exp-featured{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--sand);margin-bottom:1px}
+.exp-compact{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--sand);margin-bottom:40px}
+.ec{background:var(--cream);padding:0}
+.ec-inner{display:grid;grid-template-columns:220px 1fr}
+.ec-inner.noimg{display:block;padding:28px 26px}
+.ec-img{overflow:hidden;min-height:220px}
+.ec-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
+.ec-body{padding:28px 26px}
+.ec-meta{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:300}
+.ec-title{font-family:'Playfair Display',Georgia,serif;font-size:18px;font-weight:400;color:var(--navy);margin-bottom:5px;line-height:1.3}
+.ec-org{font-size:13px;color:#9B5268;margin-bottom:12px;font-weight:300}
+.ec-ctx{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-style:italic;font-weight:300;border-left:2px solid var(--sand);padding-left:12px}
+.ec-list{list-style:none;margin-bottom:14px}
+.ec-li{font-size:13px;color:var(--muted);line-height:1.7;padding-left:14px;position:relative;margin-bottom:4px;font-weight:300}
+.ec-li::before{content:'◆';position:absolute;left:0;font-size:7px;top:5px;color:var(--blush2)}
+.ec-li strong{color:var(--navy);font-weight:500}
+.ec-tags{display:flex;flex-wrap:wrap;gap:5px}
+.ec-tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:.5px solid var(--sand);padding:3px 8px;color:var(--navy)}
+/* BUILDER ECHO */
+.builder-echo{background:var(--navy);padding:38px 52px;margin-bottom:40px}
+.builder-echo p{font-family:'Playfair Display',Georgia,serif;font-size:clamp(16px,2vw,22px);font-weight:300;font-style:italic;color:var(--cream);line-height:1.6}
+.builder-echo em{color:var(--blush);font-style:italic}
+/* LEADERSHIP */
+.lead-section-eye{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.lead-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--sand)}
+.lead-card{background:var(--cream);padding:26px 24px;position:relative;overflow:hidden}
+.lead-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blush);transform:scaleY(0);transform-origin:bottom;transition:transform .35s}
+.lead-card:hover::before{transform:scaleY(1)}
+.lead-eye{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.lead-title{font-family:'Playfair Display',Georgia,serif;font-size:17px;font-weight:400;color:var(--navy);margin-bottom:4px;line-height:1.3}
+.lead-org{font-size:12.5px;color:#9B5268;margin-bottom:10px;font-weight:300}
+.lead-desc{font-size:13px;color:var(--muted);line-height:1.7;font-weight:300}
+/* PROJECT IMAGES */
+.pc-img{margin:-32px -28px 22px -28px;width:calc(100% + 56px);height:190px;overflow:hidden}
+.pc-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .5s}
+.pc:hover .pc-img img{transform:scale(1.04)}
+/* SKILLS */
+.skills-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+.skill-chip{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;background:var(--sand);padding:6px 13px;color:var(--navy);border:.5px solid var(--sand2)}
+
+/* ABOUT PHILOSOPHY QUOTE */
+.about-quote{border-left:2px solid var(--blush);padding:16px 20px;margin:24px 0;background:var(--cream2)}
+.about-quote p{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(15px,1.6vw,18px);font-style:italic;font-weight:300;color:var(--navy);line-height:1.65}
+
+/* EXPERIENCE CARDS (competition-style) */
+.exp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--sand);margin-bottom:40px}
+.xc{background:var(--cream);position:relative;overflow:hidden;transition:background .25s;cursor:pointer}
+.xc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blush);transform:scaleY(0);transform-origin:bottom;transition:transform .35s ease;z-index:1}
+.xc:hover{background:#fff}
+.xc:hover::before{transform:scaleY(1)}
+.xc-img{width:100%;height:220px;overflow:hidden}
+.xc-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;transition:transform .5s}
+.xc:hover .xc-img img{transform:scale(1.04)}
+.xc-body{padding:28px 26px}
+.xc-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:8px}
+.xc-loc{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9B5268}
+.xc-title{font-family:'Playfair Display',Georgia,serif;font-size:18px;font-weight:400;color:var(--navy);margin-bottom:4px;line-height:1.3}
+.xc-org{font-size:12.5px;color:var(--muted);margin-bottom:10px;font-weight:300}
+.xc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.xc-tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:.5px solid var(--sand);padding:3px 8px;color:var(--navy)}
+.xc-hint{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);opacity:.45;margin-top:6px;transition:opacity .25s}
+.xc:hover .xc-hint{opacity:0;height:0;margin:0;overflow:hidden}
+.xc-desc{font-size:13px;color:var(--muted);line-height:1.75;max-height:0;overflow:hidden;opacity:0;transition:max-height .45s ease,opacity .3s .1s;font-weight:300}
+.xc:hover .xc-desc{max-height:320px;opacity:1}
+.xc-li{padding-left:14px;position:relative;margin-bottom:6px}
+.xc-li::before{content:'◆';position:absolute;left:0;top:5px;font-size:7px;color:var(--blush2)}
+
+/* LEAD PHOTO PLACEHOLDER */
+.lead-photo{width:100%;height:150px;overflow:hidden;margin-bottom:16px}
+.lead-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.lead-photo-placeholder{width:100%;height:150px;border:.5px dashed var(--sand2);display:flex;align-items:center;justify-content:center;margin-bottom:16px;background:var(--cream)}
+.lead-photo-placeholder span{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* PROJECT TABS */
+.proj-tabs{display:flex;gap:0;margin-bottom:36px;border-bottom:.5px solid var(--sand)}
+.proj-tab{background:none;border:none;border-bottom:2px solid transparent;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:10px 24px 9px;cursor:pointer;font-family:'Inter',sans-serif;margin-bottom:-1px;transition:color .2s,border-color .2s}
+.proj-tab:hover{color:var(--navy)}
+.proj-tab.active{color:var(--navy);border-bottom-color:var(--navy)}
+.proj-pane{display:none}
+.proj-pane.active{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--sand)}
+.pc-req{display:inline-block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:var(--navy);color:var(--cream);padding:8px 16px;text-decoration:none;margin-top:14px;transition:background .2s}
+.pc-req:hover{background:#2e3f52}
+/* SEEKING */
+.seeking-pill{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:var(--blush);color:var(--navy);padding:5px 13px;margin-bottom:12px}
+
+/* EDUCATION */
+.edu-section{background:var(--cream);padding:80px 60px;border-top:.5px solid var(--sand)}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.edu-label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#9B5268;margin-bottom:12px}
+.edu-school{font-family:'Playfair Display',Georgia,serif;font-size:clamp(24px,3vw,38px);font-weight:300;color:var(--navy);line-height:1.25;margin-bottom:10px}
+.edu-degree{font-size:14px;color:var(--muted);font-weight:300;line-height:1.6;margin-bottom:10px}
+.edu-meta{font-size:13px;color:var(--muted);line-height:1.75;font-weight:300}
+.edu-hl{color:var(--navy);font-weight:500}
+.edu-right{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--sand)}
+.edu-stat{background:var(--cream2);padding:26px 22px;text-align:center}
+.edu-stat-n{font-family:'Playfair Display',Georgia,serif;font-size:38px;font-weight:300;color:var(--navy);line-height:1;margin-bottom:8px}
+.edu-stat-l{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9B5268;margin-bottom:4px}
+.edu-stat-s{font-size:12px;color:var(--muted);font-weight:300}
+.edu-hs{margin-top:28px;padding-top:22px;border-top:.5px solid var(--sand)}
+.edu-hs p{font-size:13px;color:var(--muted);line-height:1.75;font-weight:300}
+.edu-hs strong{color:var(--navy);font-weight:500}
+
+@media(max-width:960px){
+  .hero{flex-direction:column;height:auto}.hero-img{height:60vw}.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+  .comp-grid{grid-template-columns:1fr 1fr}.proj-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}.about-section{grid-template-columns:1fr;gap:44px}
+  nav{padding:16px 24px}.nav-links{display:none}
+  .hero-text,.work-section,.projects-section,.exp-section,.gallery-section,.about-section,.contact-section,.quote-section{padding-left:24px;padding-right:24px}
+  .gallery-section{padding-left:24px}.gallery-scroll,.gallery-head{padding-right:24px}
+  .feature-overlay{padding:0 32px}
+  footer{flex-direction:column;gap:18px;text-align:center;padding:32px 24px}
+  .exp-featured,.exp-compact,.lead-grid,.exp-grid{grid-template-columns:1fr}
+  .ec-inner{grid-template-columns:1fr}.ec-img{min-height:200px}
+  .edu-grid{grid-template-columns:1fr;gap:40px}
+}
+@media(max-width:640px){.comp-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}.sec-head{flex-direction:column;gap:14px;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<div id="lb">
+  <button class="lba" id="lb-p">&#8592;</button>
+  <img id="lb-img" src="" alt=""/>
+  <button class="lba" id="lb-n">&#8594;</button>
+  <button id="lb-x">&#215;</button>
+  <span id="lb-cap"></span>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="#">Iva Dhooria</a>
+  <div class="nav-links">
+    <a href="#education">Education</a>
+    <a href="#work">Competitions</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#japan">Japan</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-ctas">
+    <a class="btn-nav-li" href="https://www.linkedin.com/in/iva-dhooria/" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a class="btn-nav-res" href="https://drive.google.com/file/d/1dcvGnDVl9XbweInNXd4zlu1EAYw-5usE/view?usp=sharing" target="_blank">Resume ↗</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img">
+    <img src="P1003998.jpg" alt="Iva Dhooria — Foster School of Business" style="object-position:50% 15%" onerror="this.src='https://raw.githubusercontent.com/ivadhooria2004/portfolio-iva-dhooria/main/public/iva-about.webp'"/>
+  </div>
+  <div class="hero-text">
+    <span class="seeking-pill reveal">Available · June 2026 · Open to roles in Canada</span>
+    <span class="hero-eye reveal">Finance &amp; IS · Informatics · Data Science · Honors · UW Foster 2026</span>
+    <span class="hero-name reveal d1" style="display:block">Iva<br>Dhooria</span>
+    <p class="hero-tag reveal d2">Turning complexity<br>into clarity.</p>
+    <div class="hero-rule reveal d3"></div>
+    <div class="hero-btns reveal d3">
+      <button class="btn-p" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">See the work</button>
+      <button class="btn-g" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About me →</button>
+      <a class="btn-li" href="https://www.linkedin.com/in/iva-dhooria/" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <p class="quote-text reveal">"Freakishly good."</p>
+  <p class="quote-attr reveal d1">Judge panel · CaseIT International 2024</p>
+  <p class="quote-ctx reveal d2">2nd of 15 universities globally · North America, Europe &amp; Asia · Q&amp;A lead</p>
+</section>
+
+<!-- EDUCATION -->
+<section class="edu-section" id="education">
+  <div class="edu-grid">
+    <div class="edu-left reveal">
+      <p class="edu-label">Education</p>
+      <h2 class="edu-school">University of Washington<br><em>Foster School of Business</em></h2>
+      <p class="edu-degree">Finance &amp; Information Systems (dual major) · Informatics Minor · Data Science Minor</p>
+      <p class="edu-meta"><span class="edu-hl">Interdisciplinary Honors Program</span> · Direct admission to Foster · Class of June 2026 · Seattle, WA</p>
+      <div class="edu-hs">
+        <p><strong>Lakeside School</strong> — Seattle, WA · International student · Junior &amp; Senior year · Class of 2022</p>
+      </div>
+    </div>
+    <div class="edu-right reveal d1">
+      <div class="edu-stat">
+        <p class="edu-stat-n">3.75</p>
+        <p class="edu-stat-l">GPA</p>
+        <p class="edu-stat-s">Interdisciplinary Honors</p>
+      </div>
+      <div class="edu-stat">
+        <p class="edu-stat-n">2+2</p>
+        <p class="edu-stat-l">Majors + Minors</p>
+        <p class="edu-stat-s">Finance · IS · Informatics · DS</p>
+      </div>
+      <div class="edu-stat">
+        <p class="edu-stat-n">4</p>
+        <p class="edu-stat-l">Years</p>
+        <p class="edu-stat-s">Sept 2022 – June 2026</p>
+      </div>
+      <div class="edu-stat">
+        <p class="edu-stat-n">8</p>
+        <p class="edu-stat-l">Competitions</p>
+        <p class="edu-stat-s">While enrolled</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITIONS -->
+<section class="work-section" id="work">
+  <div class="sec-head">
+    <div class="reveal">
+      <p class="sec-eye">Competitions</p>
+      <h2 class="sec-title">Eight rooms.<br><em>Eight unexpected answers.</em></h2>
+    </div>
+    <a class="lnk-all reveal">All 8 →</a>
+  </div>
+
+  <p class="comp-section-label reveal" style="margin-top:0">🌐 International</p>
+  <div class="comp-grid" style="margin-bottom:1px">
+    <div class="comp-grid" style="display:contents">
+
+      <div class="cc reveal">
+        <div class="cc-img"><img src="comp_caseit.png" alt="CaseIT International"/></div>
+        <div class="cc-meta"><span class="cc-org">SFU · Vancouver · 2024</span><span class="badge-r badge-blush">2nd / 15 global</span></div>
+        <h3 class="cc-title">CaseIT International</h3>
+        <p class="cc-role">Chief Strategist · Q&amp;A Lead · IT Strategy</p>
+        <p class="cc-desc">$1.55M CAD IT modernization strategy for Pacific Coastal Airlines. Fielded live Q&amp;A from Deloitte and Microsoft panelists myself — because the win wouldn't come from the deck.</p>
+      </div>
+
+      <div class="cc reveal d1">
+        <div class="cc-img"><img src="comp_bmcc.jpg" alt="BMCC International"/></div>
+        <div class="cc-meta"><span class="cc-org">Universidad Panamericana · Guadalajara · 2024</span><span class="badge-r badge-blush">2nd in Bracket · Mixed Team Finals</span></div>
+        <h3 class="cc-title">BMCC International</h3>
+        <p class="cc-role">Chief Strategist · Cultural Brand Strategy</p>
+        <p class="cc-desc">Lucha Libre AAA brand revival for Mexican youth. No lived experience with the audience — so I treated it as a research problem, not a creativity problem.</p>
+      </div>
+
+      <div class="cc reveal d2">
+        <div class="cc-img"><img src="comp_cbs.jpg" alt="CBS Global Case Competition" style="object-position:center top"/></div>
+        <div class="cc-meta"><span class="cc-org">CBS Global · Virtual · 2025</span><span class="badge-r badge-blue">Top 20% / ~300</span></div>
+        <h3 class="cc-title">CBS Global Case Competition</h3>
+        <p class="cc-role">Chief Strategist · GIaaS Architect · Energy Strategy</p>
+        <p class="cc-desc">€300M BESS expansion across 5 international markets. Reframed the product entirely — from infrastructure provider to GIaaS (Grid Intelligence as a Service). Built the strategy, the weighted decision matrix, and the market ranking framework.</p>
+        <span class="cc-lnk" style="cursor:default;border-color:transparent;color:var(--muted)">One-pager coming</span>
+      </div>
+
+    </div>
+  </div>
+
+  <p class="comp-section-label reveal" style="margin-top:20px">🎓 UW Foster</p>
+  <div class="comp-grid">
+
+    <div class="cc blue reveal">
+      <div class="cc-img"><img src="comp_css2025.jpg" alt="Climate Solution Summit 2025"/></div>
+      <div class="cc-meta"><span class="cc-org blue">Climate Solution Summit · Seattle · 2025</span><span class="badge-r badge-blush">2nd in Finals</span></div>
+      <h3 class="cc-title">Climate Solution Summit</h3>
+      <p class="cc-role">Sustainability · Brand Strategy · Social Impact</p>
+      <p class="cc-desc">REI Co-op: close the gender equity gap for BIPOC women in Washington State. Two-pillar strategy — Eco-Cultural Clothing + RE/Invest. $115M projected revenue by 2030.</p>
+      <span class="cc-lnk" style="cursor:default;border-color:transparent;color:var(--muted)">One-pager coming</span>
+    </div>
+
+    <div class="cc blue reveal d1">
+      <div class="cc-img"><img src="comp_unify.jpg" alt="Accenture Unify"/></div>
+      <div class="cc-meta"><span class="cc-org blue">Accenture Unify · Seattle · 2024</span><span class="badge-r badge-sand">3rd in Finals</span></div>
+      <h3 class="cc-title">Accenture Unify</h3>
+      <p class="cc-role">Brand Extension · Consumer Goods · Sponsorship</p>
+      <p class="cc-desc">VF Corp turnaround — Vans into football cleats via the GAIN framework, plus luxury-outdoor pivot for North Face/Timberland. $284M 5-yr NPV for Vans alone.</p>
+      <span class="cc-lnk" style="cursor:default;border-color:transparent;color:var(--muted)">One-pager coming</span>
+    </div>
+
+    <div class="cc blue reveal d2">
+      <div class="cc-img"><img src="comp_riicc.png" alt="Russell Investments International Case"/></div>
+      <div class="cc-meta"><span class="cc-org blue">Russell Investments · Seattle · 2023</span><span class="badge-r badge-blue">Finalist</span></div>
+      <h3 class="cc-title">Russell Investments International Case</h3>
+      <p class="cc-role">International Expansion · M&amp;A · Consumer Goods</p>
+      <p class="cc-desc">Kraft × NotMilk market entry. Recommended South Korea — a market most teams hadn't modeled — on lactose intolerance rates, health-consciousness index, and plant-based adoption data.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="exp-section" id="experience">
+  <div class="sec-head">
+    <div class="reveal">
+      <p class="sec-eye">Experience</p>
+      <h2 class="sec-title">Four roles.<br><em>One pattern.</em></h2>
+    </div>
+  </div>
+
+  <!-- Experience grid: competition-style cards, hover to reveal -->
+  <div class="exp-grid">
+
+    <div class="xc reveal" style="border-top:3px solid var(--blush)">
+      <div class="xc-body">
+        <div class="xc-meta"><span class="xc-loc">Kobe, Japan · Summer 2024 · 2 months</span><span class="badge-r badge-blush">JASSO Scholar</span></div>
+        <h3 class="xc-title">International Business Development Intern</h3>
+        <p class="xc-org">Kobe University</p>
+        <div class="xc-tags"><span class="xc-tag">International Business</span><span class="xc-tag">Market Research</span><span class="xc-tag">Tourism Strategy</span></div>
+        <p class="xc-hint">Hover to read more ↓</p>
+        <div class="xc-desc">
+          <p style="font-style:italic;margin-bottom:10px">JASSO funds ~100 scholars per year across all Canadian universities — government-funded and genuinely competitive.</p>
+          <p class="xc-li"><strong style="color:var(--navy)">Conducted tourism trend research for Kobe City Government</strong> — Brisbane/Sydney sister-city analysis; 6-page report delivered in English</p>
+          <p class="xc-li">Designed market expansion strategy and video ad for Foodpict; <strong style="color:var(--navy)">team won the challenge</strong></p>
+          <p class="xc-li">Navigated Japanese business norms, language barrier, and foreign university culture simultaneously</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="xc reveal d1" style="border-top:3px solid var(--blue)">
+      <div class="xc-body">
+        <div class="xc-meta"><span class="xc-loc">Seattle, WA · Jan 2025 – Jun 2026</span><span class="badge-r badge-blue">18 months</span></div>
+        <h3 class="xc-title">Teaching Assistant — MKTG 305</h3>
+        <p class="xc-org">Foster School of Business, University of Washington</p>
+        <div class="xc-tags"><span class="xc-tag">Curriculum Design</span><span class="xc-tag">Pedagogy</span><span class="xc-tag">Canvas LMS</span></div>
+        <p class="xc-hint">Hover to read more ↓</p>
+        <div class="xc-desc">
+          <p style="font-style:italic;margin-bottom:10px">Chose this role for 18 consecutive months because designing how people learn is a different skill than knowing the material.</p>
+          <p class="xc-li">Supported <strong style="color:var(--navy)">120+ business minor students per quarter</strong> across 6 quarters — facilitation, grading, office hours</p>
+          <p class="xc-li"><strong style="color:var(--navy)">Co-designed assignments, assessments, and rubrics</strong> with the professor; content evolved each quarter</p>
+          <p class="xc-li">Managed Canvas LMS; maintained student-to-professor feedback pipeline</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="xc reveal d2" style="border-top:3px solid var(--sand2)">
+      <div class="xc-body">
+        <div class="xc-meta"><span class="xc-loc">Surrey, BC · Jun – Sep 2025</span><span class="badge-r badge-sand">4 months</span></div>
+        <h3 class="xc-title">Strategic Operations &amp; Digital Growth Intern</h3>
+        <p class="xc-org">Maxicom Canada</p>
+        <div class="xc-tags"><span class="xc-tag">Digital Marketing</span><span class="xc-tag">Zoho CRM</span><span class="xc-tag">B2B Growth</span></div>
+        <p class="xc-hint">Hover to read more ↓</p>
+        <div class="xc-desc">
+          <p class="xc-li">Optimized LinkedIn &amp; Google Ads via audience segmentation and A/B testing — <strong style="color:var(--navy)">+15% B2B website traffic</strong></p>
+          <p class="xc-li">Supported Zoho CRM implementation; conducted data integrity review across the client pipeline</p>
+          <p class="xc-li">Authored D2C e-commerce upgrade proposal — scoped, benchmarked, presented to leadership</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="xc reveal d3" style="border-top:3px solid var(--sand2)">
+      <div class="xc-body">
+        <div class="xc-meta"><span class="xc-loc">Seattle, WA · Sep 2023 – Dec 2024</span><span class="badge-r badge-sand">15 months</span></div>
+        <h3 class="xc-title">HR Student Assistant</h3>
+        <p class="xc-org">Housing &amp; Food Services, University of Washington</p>
+        <div class="xc-tags"><span class="xc-tag">HR Operations</span><span class="xc-tag">Administration</span></div>
+        <p class="xc-hint">Hover to read more ↓</p>
+        <div class="xc-desc">
+          <p class="xc-li">Managed onboarding documentation, employee records, and internal comms across a large multi-unit operation</p>
+          <p class="xc-li">Supported HR compliance workflows and staff scheduling coordination across a large multi-unit operation</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Builder echo -->
+  <div class="builder-echo reveal">
+    <p>"Leadership doesn't consist only of executing on-paper tasks effectively, but more about the unsaid things that foster connection and drive real impact."</p>
+  </div>
+
+  <!-- Leadership -->
+  <p class="lead-section-eye reveal">Leadership &amp; Extracurriculars</p>
+  <div class="lead-grid" style="grid-template-columns:repeat(4,1fr)">
+
+    <div class="lead-card reveal">
+      <div class="lead-photo"><img src="UW C-Squared.JPG" alt="UW Case Club C-Squared"/></div>
+      <p class="lead-eye">Dec 2024 – Mar 2026</p>
+      <p class="lead-title">Co-Founder &amp; Director of Membership</p>
+      <p class="lead-org">UW Case Club — C-Squared</p>
+      <p class="lead-desc">Built UW's only case competition club from zero to 40+ members as a Foster-recognized RSO. Designed a 4-workshop CAMP curriculum and established independent post-graduation leadership — built to outlast me. The philosophy was always community-building: a safe space where beginners could learn, compete, and go on to represent UW internationally.</p>
+    </div>
+
+    <div class="lead-card reveal d1">
+      <div class="lead-photo"><img src="Lavin.png" alt="Lavin Entrepreneurship Program"/></div>
+      <p class="lead-eye">Sep 2024 – Jun 2025</p>
+      <p class="lead-title">Co-Director of Outreach</p>
+      <p class="lead-org">Lavin Entrepreneurship Program</p>
+      <p class="lead-desc">Led targeted outreach to recruit senior industry leaders from the Seattle startup community as judges for the annual Lavin competition. Every conversation with founders and operators in that room reinforced that my interest in entrepreneurship is unwavering.</p>
+    </div>
+
+    <div class="lead-card reveal d2">
+      <div class="lead-photo"><img src="GBCC.JPG" alt="UW Global Business Center"/></div>
+      <p class="lead-eye">Jan – Apr 2025</p>
+      <p class="lead-title">Co-Manager, Ambassador Program</p>
+      <p class="lead-org">UW Global Business Center</p>
+      <p class="lead-desc">Interviewed, recruited, and trained a 24-person ambassador team who became liaisons for 12 international teams from 8 countries across a 3-month planning cycle. I was going through a serious family emergency right before kick-off — dealt with it first, then made it back to execute my full duties.</p>
+    </div>
+
+    <div class="lead-card reveal d3">
+      <div class="lead-photo"><img src="Salsa Club.JPG" alt="UW Salsa Club"/></div>
+      <p class="lead-eye">Sep 2022 – Jun 2024</p>
+      <p class="lead-title">Co-President</p>
+      <p class="lead-org">UW Salsa Club</p>
+      <p class="lead-desc">From club officer in freshman year to co-president in sophomore year — all starting from a Dawg Daze event in my first week at UW. Led practices, built community, and organically immersed in Latino culture through dance and music. Dancing since age four; the salsa club was where I went to feel the joy of it and share it with others.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="sec-head">
+    <div class="reveal">
+      <p class="sec-eye blue">Projects</p>
+      <h2 class="sec-title">Technical &amp; writing.<br><em>One common thread.</em></h2>
+    </div>
+  </div>
+
+  <!-- Tab bar -->
+  <div class="proj-tabs reveal">
+    <button class="proj-tab active" data-pane="technical">Technical</button>
+    <button class="proj-tab" data-pane="writing">Writing</button>
+  </div>
+
+  <!-- Technical pane -->
+  <div class="proj-pane active" id="pane-technical">
+
+    <div class="pc reveal">
+      <div class="pc-head">
+        <span class="pc-type data">R · Data Analytics</span>
+        <span class="pc-year">Independent · 2026</span>
+      </div>
+      <h3 class="pc-title">Australian Visitors to Japan — Tourism Trend Analysis</h3>
+      <p class="pc-desc">Built in R using JNTO data 2003–2025 (AI-assisted). Trained a log-linear model (R² = 0.753) on pre-COVID years (2003–2019) and validated against the recovery period (2020–2025). 2025 actuals reached 1,058,396 visitors — <strong style="color:var(--navy)">+39% above the pre-COVID trend projection</strong> of 760,038 and +70% above the 2019 peak — a structural shift in Australian travel demand, not just a rebound.</p>
+      <div class="pc-tools"><span class="pc-tool">R</span><span class="pc-tool">ggplot2</span><span class="pc-tool">Log-Linear Regression</span><span class="pc-tool">JNTO Data</span><span class="pc-tool">Time Series</span></div>
+      <span class="pc-lnk" style="cursor:default;opacity:.45;border-color:transparent">GitHub coming ↗</span>
+    </div>
+
+    <div class="pc reveal d1">
+      <div class="pc-head">
+        <span class="pc-type data">R · ML · Group</span>
+        <span class="pc-year">IS 451 · Winter 2026</span>
+      </div>
+      <h3 class="pc-title">F1 Driver Performance — Predictive Analysis</h3>
+      <p class="pc-desc">868 F1 drivers, 1950–2023, 22 career variables. Which metrics actually predict championship success — and which ones don't? Three models: multiple linear regression, logistic regression, and k-means clustering segmenting drivers into performance tiers. The intersection of a sport I'm passionate about and data analytics that made this project genuinely rewarding. Group project; R/ML sections AI-assisted.</p>
+      <div class="pc-tools"><span class="pc-tool">R</span><span class="pc-tool">SQL</span><span class="pc-tool">ggplot2</span><span class="pc-tool">Logistic Regression</span><span class="pc-tool">MLR</span><span class="pc-tool">k-means</span></div>
+      <span class="pc-lnk" style="cursor:default;opacity:.45;border-color:transparent">GitHub coming ↗</span>
+    </div>
+
+    <div class="pc reveal d2">
+      <div class="pc-head">
+        <span class="pc-type data">SQL · Databases · Group</span>
+        <span class="pc-year">INFO 330 · Winter 2026</span>
+      </div>
+      <h3 class="pc-title">Global Commodity Affordability — Relational Database</h3>
+      <p class="pc-desc">Built a structured relational database integrating global commodity price data with national purchasing power parity (PPP) indicators across countries and markets. Designed the ERD, defined key entities (Country, Market, Commodity), and wrote multi-phase SQL queries including stored procedures and CTEs. Group project; SQL independently written.</p>
+      <div class="pc-tools"><span class="pc-tool">SQL</span><span class="pc-tool">SQL Server</span><span class="pc-tool">ERD</span><span class="pc-tool">Stored Procedures</span><span class="pc-tool">CTEs</span></div>
+      <span class="pc-lnk" style="cursor:default;opacity:.45;border-color:transparent">GitHub coming ↗</span>
+    </div>
+
+    <div class="pc reveal d3">
+      <div class="pc-head">
+        <span class="pc-type data">SQL · R · ML · Group</span>
+        <span class="pc-year">IS 445 · Spring 2026</span>
+      </div>
+      <h3 class="pc-title">What Makes a Hit? — Spotify 2023 Analysis</h3>
+      <p class="pc-desc">Analyzed 954 chart-topping Spotify songs from 2023 to identify what audio and structural features predict streaming success. Combined SQL data querying with R modeling: logistic regression, classification tree, and k-means clustering. Group project; SQL independently written, R/ML sections AI-assisted.</p>
+      <div class="pc-tools"><span class="pc-tool">SQL</span><span class="pc-tool">R</span><span class="pc-tool">Logistic Regression</span><span class="pc-tool">Classification Tree</span><span class="pc-tool">k-means</span></div>
+      <span class="pc-lnk" style="cursor:default;opacity:.45;border-color:transparent">GitHub coming ↗</span>
+    </div>
+
+  </div>
+
+  <!-- Writing pane -->
+  <div class="proj-pane" id="pane-writing">
+
+    <div class="pc reveal">
+      <div class="pc-head">
+        <span class="pc-type honors">Honors Research</span>
+        <span class="pc-year">INFO 300 · 2025</span>
+      </div>
+      <h3 class="pc-title">Attention Span Under Pressure</h3>
+      <p class="pc-desc">Proposed study testing whether sustained attention training — methods developed for pilots and surgeons — can improve performance in business case competitions. The 24-hour prep window mirrors the clinical settings where this training has the strongest evidence. Drew on 6 peer-reviewed sources. The question started as curiosity; it became a research design.</p>
+      <div class="pc-tools"><span class="pc-tool">Research Design</span><span class="pc-tool">Cognitive Science</span><span class="pc-tool">Informatics</span></div>
+      <a class="pc-req" href="mailto:ivadhooria2004@gmail.com?subject=Case%20Request%20%E2%80%94%20Attention%20Span%20Research">Request full paper →</a>
+    </div>
+
+    <div class="pc reveal d1">
+      <div class="pc-head">
+        <span class="pc-type case">Case Writing</span>
+        <span class="pc-year">EFCC · 2025</span>
+      </div>
+      <h3 class="pc-title">King County Metro — FIFA 2026</h3>
+      <p class="pc-desc">Seattle hosts FIFA World Cup 2026. The case frames a transit accessibility problem across two distinct underserved groups: LEP speakers who can't navigate the system, and mobility-challenged riders who can't physically access it. Two different root causes, one systemic framing. Written with Adrian Soh for the Education Foundation Case Competition.</p>
+      <div class="pc-tools"><span class="pc-tool">Public Policy</span><span class="pc-tool">Accessibility</span><span class="pc-tool">Case Writing</span></div>
+      <a class="pc-req" href="mailto:ivadhooria2004@gmail.com?subject=Case%20Request%20%E2%80%94%20King%20County%20Metro">Request full case →</a>
+    </div>
+
+    <div class="pc reveal d2">
+      <div class="pc-head">
+        <span class="pc-type case">Case Writing</span>
+        <span class="pc-year">MOSAIC · 2026</span>
+      </div>
+      <h3 class="pc-title">Stanley 1913 — Growth Strategy</h3>
+      <p class="pc-desc">The case evaluates three strategic options for Stanley 1913's next growth phase — new product line, new demographic segment, and international expansion. The harder question underneath: how does a legacy brand navigate a cultural moment without losing the identity that made the moment possible? Co-written with Adrian Soh.</p>
+      <div class="pc-tools"><span class="pc-tool">Brand Strategy</span><span class="pc-tool">Growth</span><span class="pc-tool">Case Writing</span></div>
+      <a class="pc-req" href="mailto:ivadhooria2004@gmail.com?subject=Case%20Request%20%E2%80%94%20Stanley%201913">Request full case →</a>
+    </div>
+
+    <div class="pc reveal d3">
+      <div class="pc-head">
+        <span class="pc-type case">Case Writing</span>
+        <span class="pc-year">BEA · 2026</span>
+      </div>
+      <h3 class="pc-title">AI Ethics in MedTech</h3>
+      <p class="pc-desc">A startup's diagnostic AI is adopted by a major pharmaceutical partner — then a patient is harmed. The case works through IP ownership, algorithmic bias, and accountability when AI makes a recommendation that a doctor follows. Ethical tension between startup autonomy and institutional responsibility, with no clean answer. Built for the Business Ethics Association case competition.</p>
+      <div class="pc-tools"><span class="pc-tool">AI Ethics</span><span class="pc-tool">Healthcare</span><span class="pc-tool">Case Writing</span></div>
+      <a class="pc-req" href="mailto:ivadhooria2004@gmail.com?subject=Case%20Request%20%E2%80%94%20AI%20Ethics%20in%20MedTech">Request full case →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURE: full-bleed Japan with overlay text — using landscape photo -->
+<section class="feature">
+  <img src="https://raw.githubusercontent.com/ivadhooria2004/portfolio-iva-dhooria/main/public/images/japan/IMG_9237.webp"
+       alt="Kobe, Japan"
+       onerror="this.src='';this.parentElement.style.background='#2C3E50'"/>
+  <div class="feature-overlay">
+    <div class="feature-inner reveal">
+      <span class="feature-eye">Kobe, Japan · Summer 2024 · JASSO Government Scholar</span>
+      <p class="feature-q">"We are more unique than we realize and less different than we believe."</p>
+      <p class="feature-sub">Six weeks in Kobe changed how I think about culture, communication, and adaptability. Japanese corporate culture operates on implicit cues. No one tells you what to do next. You read the room. I learned about Mottainai (want not, waste not) through a farm that applied it to every stage of production. I left with a phrase that stuck: <em>Ikimashou.</em> Let's go.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="japan">
+  <div class="gallery-head">
+    <p class="sec-eye reveal">Beyond the case room</p>
+    <h2 class="sec-title reveal d1">Japan, through my lens.</h2>
+    <p class="reveal d2" style="font-size:13.5px;color:var(--muted);margin-top:10px;font-weight:300">Scroll to explore · Click any photo to open</p>
+  </div>
+  <div class="gallery-scroll" id="gal">
+
+    <!-- portrait 4284×5712 → portrait slot -->
+    <div class="gi" style="width:240px;height:340px" data-i="0" data-cap="Kobe · Summer 2024">
+      <img src="japan/IMG_9329.jpg" style="object-position:center top" alt="Kobe"/>
+      <span class="gi-label">Kobe · Summer 2024</span>
+    </div>
+
+    <!-- landscape 4032×3024 → landscape slot -->
+    <div class="gi" style="width:320px;height:260px" data-i="1" data-cap="Japan · 2024">
+      <img src="japan/IMG_0552.jpg" style="object-position:center center" alt="Japan"/>
+      <span class="gi-label">Japan · 2024</span>
+    </div>
+
+    <!-- portrait 4284×5712 → portrait slot -->
+    <div class="gi" style="width:240px;height:340px" data-i="2" data-cap="Kobe · 2024">
+      <img src="japan/IMG_9237.jpg" style="object-position:center 20%" alt="Kobe"/>
+      <span class="gi-label">Kobe · 2024</span>
+    </div>
+
+    <!-- landscape 5712×4284 → landscape slot -->
+    <div class="gi" style="width:300px;height:260px" data-i="3" data-cap="Japan · 2024">
+      <img src="japan/IMG_8670.jpg" style="object-position:center center" alt="Japan"/>
+      <span class="gi-label">Japan · 2024</span>
+    </div>
+
+    <!-- portrait 4284×5712 → portrait slot -->
+    <div class="gi" style="width:240px;height:340px" data-i="4" data-cap="Kobe · 2024">
+      <img src="japan/IMG_8946.jpg" style="object-position:center top" alt="Kobe"/>
+      <span class="gi-label">Kobe · 2024</span>
+    </div>
+
+    <!-- landscape 4032×3024 → landscape slot -->
+    <div class="gi" style="width:300px;height:260px" data-i="5" data-cap="Japan · 2024">
+      <img src="japan/IMG_8719.jpg" style="object-position:center center" alt="Japan"/>
+      <span class="gi-label">Japan · 2024</span>
+    </div>
+
+    <!-- portrait 1656×2208 → portrait slot -->
+    <div class="gi" style="width:240px;height:340px" data-i="6" data-cap="Exploring · Kobe">
+      <img src="japan/IMG_9007.jpg" style="object-position:center top" alt="Kobe"/>
+      <span class="gi-label">Exploring · Kobe</span>
+    </div>
+
+    <!-- landscape 5712×4284 → landscape slot -->
+    <div class="gi" style="width:300px;height:260px" data-i="7" data-cap="Kobe · 2024">
+      <img src="japan/IMG_9760.jpg" style="object-position:center 40%" alt="Japan"/>
+      <span class="gi-label">Kobe · 2024</span>
+    </div>
+
+    <!-- portrait 1656×2208 → portrait slot -->
+    <div class="gi" style="width:240px;height:340px" data-i="8" data-cap="いつかまた · Kobe">
+      <img src="japan/IMG_9659.jpg" style="object-position:center top" alt="Kobe"/>
+      <span class="gi-label">いつかまた · Kobe</span>
+    </div>
+
+    <!-- landscape 5712×4284 → landscape slot -->
+    <div class="gi" style="width:300px;height:260px" data-i="9" data-cap="Japan · 2024">
+      <img src="japan/IMG_8759.jpg" style="object-position:center center" alt="Japan"/>
+      <span class="gi-label">Japan · 2024</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="sb reveal"><p class="sb-n" data-target="8">0</p><p class="sb-l">Competitions</p></div>
+    <div class="sb reveal d1"><p class="sb-n" data-target="3.75" data-dec="2">0</p><p class="sb-l">GPA</p><p class="sb-s">Finance · IS · Informatics · Data Science</p></div>
+    <div class="sb reveal d2"><p class="sb-n" data-target="5">0</p><p class="sb-l">Languages</p><p class="sb-s">English · Punjabi · Hindi · French · Japanese</p></div>
+    <div class="sb reveal d3"><p class="sb-n" data-target="5">0</p><p class="sb-l">Countries · Undergrad</p><p class="sb-s">Lived, studied, or worked in</p></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-left reveal">
+    <h2>India to Foster to Kobe.<br><em>Always the unfamiliar room.</em></h2>
+    <p>I grew up in India. When Covid arrived in 2020, so did an unexpected pivot — junior year of high school, Seattle, Lakeside School. An international student with no familiar scaffolding: a new culture, a new city, a pandemic reshaping everything around me. I arrived uncertain. I left direct-admitted to UW Foster.</p>
+    <p>I'm drawn to problems that sit at the intersection of data and strategy, where analytical thinking and business judgment both have a seat at the table. My time at UW has been about deliberately collecting tools for that kind of work: finance and information systems for the analytical foundation, case competitions for the pressure-tested problem solving, and an interdisciplinary honors curriculum that pushed me to think across literature, history, philosophy, and public health alongside my business coursework.</p>
+    <p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:22px;margin-bottom:8px">Core Skills</p>
+    <div class="skills-row" style="margin-top:0">
+      <span class="skill-chip">SQL</span>
+      <span class="skill-chip">R</span>
+      <span class="skill-chip">Excel</span>
+      <span class="skill-chip">Data Visualization</span>
+    </div>
+    <p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:14px;margin-bottom:8px">Applied in Work &amp; Competitions</p>
+    <div class="skills-row" style="margin-top:0">
+      <span class="skill-chip" style="background:var(--cream2)">Financial Modeling</span>
+      <span class="skill-chip" style="background:var(--cream2)">Market Research</span>
+      <span class="skill-chip" style="background:var(--cream2)">Strategy Frameworks</span>
+      <span class="skill-chip" style="background:var(--cream2)">CRM (Zoho)</span>
+    </div>
+  </div>
+  <div class="about-img reveal d2">
+    <img src="P1004040.jpg" alt="Iva Dhooria — UW" style="object-position:50% 28%" onerror="this.src='https://raw.githubusercontent.com/ivadhooria2004/portfolio-iva-dhooria/main/public/iva-about.webp'"/>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <h2 class="reveal">Let's work together.</h2>
+  <p class="reveal d1">Finance, data analytics, strategy, and international business roles across Canada — particularly in Vancouver, Toronto, and Ottawa. Available June 2026. Canadian PR.</p>
+  <div class="contact-links reveal d2">
+    <a class="cbtn primary" href="mailto:ivadhooria2004@gmail.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+      Email me
+    </a>
+    <a class="cbtn li" href="https://www.linkedin.com/in/iva-dhooria/" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a class="cbtn outline" href="https://drive.google.com/file/d/1dcvGnDVl9XbweInNXd4zlu1EAYw-5usE/view?usp=sharing" target="_blank">Resume ↗</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="foot-name">Iva Dhooria</span>
+  <div class="foot-links">
+    <a class="foot-lnk" href="#work">Work</a>
+    <a class="foot-lnk" href="#projects">Projects</a>
+    <a class="foot-lnk" href="#about">About</a>
+    <a class="foot-lnk" href="mailto:ivadhooria2004@gmail.com">ivadhooria2004@gmail.com</a>
+  </div>
+  <a class="foot-li" href="https://www.linkedin.com/in/iva-dhooria/" target="_blank">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    LinkedIn
+  </a>
+</footer>
+
+<script>
+// SCROLL REVEAL
+const ro = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:.08,rootMargin:'0px 0px -28px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+setTimeout(()=>document.querySelectorAll('.hero .reveal').forEach(el=>el.classList.add('visible')),80);
+
+// NAV SHADOW
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40),{passive:true});
+
+// COUNTERS
+const co = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if(!e.isIntersecting) return;
+    const el=e.target, tgt=parseFloat(el.dataset.target), dec=parseInt(el.dataset.dec||'0');
+    let cur=0; const inc=tgt/80;
+    const t=setInterval(()=>{ cur=Math.min(cur+inc,tgt); el.textContent=dec>0?cur.toFixed(dec):Math.round(cur); if(cur>=tgt)clearInterval(t); },18);
+    co.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('.sb-n[data-target]').forEach(c=>co.observe(c));
+
+// AUTO-ROTATE SIDEWAYS PHOTOS
+// Landscape images (naturalWidth > naturalHeight) placed in portrait slots need 90° rotation.
+// We run this: (a) on window load, (b) per-image on load event, (c) on a short polling interval
+// to handle any timing edge cases from CDN-loaded images.
+function applyRotationFixes() {
+  document.querySelectorAll('.gi').forEach(gi => {
+    const img = gi.querySelector('img');
+    if (!img || !img.complete || img.naturalWidth === 0) return;
+    // Already fixed — skip
+    if (img.dataset.rotFixed) return;
+    const cw = gi.offsetWidth, ch = gi.offsetHeight;
+    if (cw === 0 || ch === 0) return;
+    const nw = img.naturalWidth, nh = img.naturalHeight;
+    // Portrait slot = container height meaningfully exceeds width
+    const slotPortrait = ch > cw * 1.15;
+    // Landscape image = pixel width meaningfully exceeds pixel height
+    const imgLandscape = nw > nh * 1.15;
+    if (slotPortrait && imgLandscape) {
+      // Swap dimensions so object-fit:cover sees a landscape element,
+      // center it over the container, then rotate 90° around its own center.
+      img.style.cssText = [
+        'position:absolute',
+        `width:${ch}px`,
+        `height:${cw}px`,
+        `left:${(cw - ch) / 2}px`,
+        `top:${(ch - cw) / 2}px`,
+        'object-fit:cover',
+        'max-width:none',
+        'transform:rotate(90deg)',
+        'transform-origin:center center'
+      ].join(';');
+      gi.style.overflow = 'hidden';
+      img.dataset.rotFixed = '1';
+    }
+  });
+}
+
+// Trigger on every image load event
+document.querySelectorAll('.gi img').forEach(img => {
+  img.addEventListener('load', applyRotationFixes);
+  if (img.complete && img.naturalWidth > 0) applyRotationFixes();
+});
+
+// Trigger on full page load (all resources fetched)
+window.addEventListener('load', applyRotationFixes);
+
+// Poll briefly to catch late CDN loads (clears itself after 3 seconds)
+const _rotPoll = setInterval(() => { applyRotationFixes(); }, 300);
+setTimeout(() => clearInterval(_rotPoll), 3000);
+
+// GALLERY DRAG
+const gal=document.getElementById('gal');
+let dn=false,sx=0,sl=0;
+gal.addEventListener('mousedown',e=>{dn=true;sx=e.pageX-gal.offsetLeft;sl=gal.scrollLeft;});
+gal.addEventListener('mouseleave',()=>dn=false);
+gal.addEventListener('mouseup',()=>dn=false);
+gal.addEventListener('mousemove',e=>{if(!dn)return;e.preventDefault();gal.scrollLeft=sl-(e.pageX-gal.offsetLeft-sx)*1.4;});
+
+// LIGHTBOX
+const imgs=Array.from(document.querySelectorAll('.gi')).map(i=>({src:i.querySelector('img').src,cap:i.dataset.cap||''}));
+let cur=0;
+function openLB(i){cur=i;document.getElementById('lb-img').src=imgs[i].src;document.getElementById('lb-cap').textContent=imgs[i].cap;document.getElementById('lb').classList.add('on');document.body.style.overflow='hidden';}
+function closeLB(){document.getElementById('lb').classList.remove('on');document.body.style.overflow='';}
+function moveLB(d){cur=(cur+d+imgs.length)%imgs.length;document.getElementById('lb-img').src=imgs[cur].src;document.getElementById('lb-cap').textContent=imgs[cur].cap;}
+document.querySelectorAll('.gi').forEach(item=>item.addEventListener('click',()=>openLB(parseInt(item.dataset.i))));
+document.getElementById('lb-x').onclick=closeLB;
+document.getElementById('lb-n').onclick=()=>moveLB(1);
+document.getElementById('lb-p').onclick=()=>moveLB(-1);
+document.getElementById('lb').addEventListener('click',e=>{if(e.target.id==='lb')closeLB();});
+document.addEventListener('keydown',e=>{if(!document.getElementById('lb').classList.contains('on'))return;if(e.key==='Escape')closeLB();if(e.key==='ArrowRight')moveLB(1);if(e.key==='ArrowLeft')moveLB(-1);});
+
+// Project tabs
+document.querySelectorAll('.proj-tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.proj-tab').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.proj-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('pane-'+btn.dataset.pane).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
