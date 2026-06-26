@@ -305,7 +305,7 @@ footer{background:var(--navy);padding:38px 60px;display:flex;justify-content:spa
 .edu-hs strong{color:var(--navy);font-weight:500}
 
 @media(max-width:960px){
-  .hero{flex-direction:column;height:auto}.hero-img{height:60vw}.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+  .hero{flex-direction:column;height:auto}.hero-img{height:70vw}.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
   .comp-grid{grid-template-columns:1fr 1fr}.proj-grid{grid-template-columns:1fr}
   .stats-grid{grid-template-columns:repeat(2,1fr)}.about-section{grid-template-columns:1fr;gap:44px}
   nav{padding:16px 24px}.nav-links{display:none}
@@ -316,8 +316,21 @@ footer{background:var(--navy);padding:38px 60px;display:flex;justify-content:spa
   .exp-featured,.exp-compact,.lead-grid,.exp-grid{grid-template-columns:1fr}
   .ec-inner{grid-template-columns:1fr}.ec-img{min-height:200px}
   .edu-grid{grid-template-columns:1fr;gap:40px}
+  /* Extracurriculars: 2-col grid on tablet */
+  .xc-grid{grid-template-columns:1fr 1fr}
+  /* Touch: active state mirrors hover */
+  .xc.active{background:#fff}
+  .xc.active::before{transform:scaleY(1)}
+  .xc.active .xc-img img{transform:scale(1.04)}
+  .xc.active .xc-hint{opacity:0;height:0;margin:0;overflow:hidden}
+  .xc.active .xc-desc{max-height:320px;opacity:1}
 }
-@media(max-width:640px){.comp-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}.sec-head{flex-direction:column;gap:14px;align-items:flex-start}}
+@media(max-width:640px){
+  .comp-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}.sec-head{flex-direction:column;gap:14px;align-items:flex-start}
+  /* Single column + taller photo on small phones */
+  .xc-grid{grid-template-columns:1fr}
+  .hero-img{height:80vw}
+}
 </style>
 </head>
 <body>
@@ -509,7 +522,7 @@ footer{background:var(--navy);padding:38px 60px;display:flex;justify-content:spa
         <h3 class="xc-title">International Business Development Intern</h3>
         <p class="xc-org">Kobe University</p>
         <div class="xc-tags"><span class="xc-tag">International Business</span><span class="xc-tag">Market Research</span><span class="xc-tag">Tourism Strategy</span></div>
-        <p class="xc-hint">Hover to read more ↓</p>
+        <p class="xc-hint xc-hint-text">Hover to read more ↓</p>
         <div class="xc-desc">
           <p style="font-style:italic;margin-bottom:10px">JASSO funds ~100 scholars per year across all Canadian universities — government-funded and genuinely competitive.</p>
           <p class="xc-li"><strong style="color:var(--navy)">Conducted tourism trend research for Kobe City Government</strong> — Brisbane/Sydney sister-city analysis; 6-page report delivered in English</p>
@@ -525,7 +538,7 @@ footer{background:var(--navy);padding:38px 60px;display:flex;justify-content:spa
         <h3 class="xc-title">Teaching Assistant — MKTG 305</h3>
         <p class="xc-org">Foster School of Business, University of Washington</p>
         <div class="xc-tags"><span class="xc-tag">Curriculum Design</span><span class="xc-tag">Pedagogy</span><span class="xc-tag">Canvas LMS</span></div>
-        <p class="xc-hint">Hover to read more ↓</p>
+        <p class="xc-hint xc-hint-text">Hover to read more ↓</p>
         <div class="xc-desc">
           <p style="font-style:italic;margin-bottom:10px">Chose this role for 18 consecutive months because designing how people learn is a different skill than knowing the material.</p>
           <p class="xc-li">Supported <strong style="color:var(--navy)">120+ business minor students per quarter</strong> across 6 quarters — facilitation, grading, office hours</p>
@@ -541,7 +554,7 @@ footer{background:var(--navy);padding:38px 60px;display:flex;justify-content:spa
         <h3 class="xc-title">Strategic Operations &amp; Digital Growth Intern</h3>
         <p class="xc-org">Maxicom Canada</p>
         <div class="xc-tags"><span class="xc-tag">Digital Marketing</span><span class="xc-tag">Zoho CRM</span><span class="xc-tag">B2B Growth</span></div>
-        <p class="xc-hint">Hover to read more ↓</p>
+        <p class="xc-hint xc-hint-text">Hover to read more ↓</p>
         <div class="xc-desc">
           <p class="xc-li">Optimized LinkedIn &amp; Google Ads via audience segmentation and A/B testing — <strong style="color:var(--navy)">+15% B2B website traffic</strong></p>
           <p class="xc-li">Supported Zoho CRM implementation; conducted data integrity review across the client pipeline</p>
@@ -556,7 +569,7 @@ footer{background:var(--navy);padding:38px 60px;display:flex;justify-content:spa
         <h3 class="xc-title">HR Student Assistant</h3>
         <p class="xc-org">Housing &amp; Food Services, University of Washington</p>
         <div class="xc-tags"><span class="xc-tag">HR Operations</span><span class="xc-tag">Administration</span></div>
-        <p class="xc-hint">Hover to read more ↓</p>
+        <p class="xc-hint xc-hint-text">Hover to read more ↓</p>
         <div class="xc-desc">
           <p class="xc-li">Managed onboarding documentation, employee records, and internal comms across a large multi-unit operation</p>
           <p class="xc-li">Supported HR compliance workflows and staff scheduling coordination across a large multi-unit operation</p>
@@ -979,6 +992,18 @@ document.querySelectorAll('.proj-tab').forEach(btn=>{
     document.getElementById('pane-'+btn.dataset.pane).classList.add('active');
   });
 });
+
+// Mobile touch: toggle xc cards on tap, update hint text
+if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+  document.querySelectorAll('.xc-hint-text').forEach(el => { el.textContent = 'Tap to read more ↓'; });
+  document.querySelectorAll('.xc').forEach(card => {
+    card.addEventListener('click', () => {
+      const isActive = card.classList.contains('active');
+      document.querySelectorAll('.xc').forEach(c => c.classList.remove('active'));
+      if (!isActive) card.classList.add('active');
+    });
+  });
+}
 </script>
 </body>
 </html>
